@@ -74,7 +74,7 @@ function App() {
     try {
       const convertedObj = JSON.parse(signedPayload);
       const res = await fetch(
-        `${process.env.REACT_APP_API_URL}jobs/submit-transaction`,
+        `${process.env.REACT_APP_API_URL}/jobs/submit-transaction`,
         {
           method: "POST",
           headers: {
