@@ -1,0 +1,259 @@
+FORWARDER_ADDRESS=0x3E8bb983E46274F246BE476B5bf42e97617D3b2A  
+TOKEN_ADDRESS=0xAbE8C14C6501db6892B07B918E7F06F276D2976c
+PLAYER_TOKEN_ADDRESS=0x9F4DfDb029350C77da2cB024c68b81bE80DAc0a7
+PLAYER_FACTORY_ADDRESS=0xA77D355510F3193C97E8eED5F32c52b62f1EB4a3
+AMM_POOL_ADDRESS=0x83f0D1051BD5fCc090B7e300464d1f8457a69493
+AMM_FACTORY_ADDRESS=0x6D1EFf0884D0b992E159d617c82f407E29dfe103
+
+Use two wallet addresses
+ADMIN (for all method calls)
+walletAddress:
+0xb46be61fb0dd88fb5eb2f5ad7163454304314b82
+Private Key:
+650d9f993da85046ceefe05d9c7c930fa2712b7a282e8f54c245ea1c2b03e3f1
+
+USER (FOR swap, approve calls)
+walletAddress:
+0x75933a1aaa8576585cf9608d242c25e1f497904f
+Private Key:
+325efc05101dc6e427b306f61426ae4bb438ed2e5627ed0a2169c9d1da292892
+
+
+- Pause Contract
+URL - https://cricket-manager-backend-982880605381.asia-south1.run.app/contract/setContract
+Body - 
+{
+  "contractAddress": "0xAbE8C14C6501db6892B07B918E7F06F276D2976c",
+  "adminWalletAddress": "0xb46be61fb0dd88fb5eb2f5ad7163454304314b82",
+  "action": "Pause"
+}
+
+- Unpause Contract
+URL - https://cricket-manager-backend-982880605381.asia-south1.run.app/contract/setContract
+Body - 
+{
+  "contractAddress": "0xAbE8C14C6501db6892B07B918E7F06F276D2976c",
+  "adminWalletAddress": "0xb46be61fb0dd88fb5eb2f5ad7163454304314b82",
+  "action": "Unpause"
+}
+
+- Add Admin
+URL - https://cricket-manager-backend-982880605381.asia-south1.run.app/contract/setAdmin
+Body - 
+{
+  "contractAddress": "0xAbE8C14C6501db6892B07B918E7F06F276D2976c",
+  "adminWalletAddress": "0xb46be61fb0dd88fb5eb2f5ad7163454304314b82",
+  "modifiedWalletAddress":"0x75933a1aaa8576585cf9608d242c25e1f497904f",
+  "action": "Add"
+}
+
+- Remove Admin
+URL - https://cricket-manager-backend-982880605381.asia-south1.run.app/contract/setAdmin
+Body - 
+{
+  "contractAddress": "0xAbE8C14C6501db6892B07B918E7F06F276D2976c",
+  "adminWalletAddress": "0xb46be61fb0dd88fb5eb2f5ad7163454304314b82",
+  "modifiedWalletAddress":"0x75933a1aaa8576585cf9608d242c25e1f497904f",
+  "action": "Remove"
+}
+
+- Create Cricketer
+URL - https://cricket-manager-backend-982880605381.asia-south1.run.app/cricketer/create-token
+Body - 
+{
+  "name": "Virat Kohli Token",
+  "adminWalletAddress": "0xb46be61fb0dd88fb5eb2f5ad7163454304314b82",
+  "symbol": "VKC",
+  "initialSupply": 1000000
+}
+
+- Add Cricketer Supply
+URL - https://cricket-manager-backend-982880605381.asia-south1.run.app/cricketer/add-supply
+Body - 
+{
+  "contractAddress": "0x9F4DfDb029350C77da2cB024c68b81bE80DAc0a7",
+  "adminWalletAddress": "0xb46be61fb0dd88fb5eb2f5ad7163454304314b82",
+  "additionalSupply": 100
+}
+
+- Create AMM
+URL - https://cricket-manager-backend-982880605381.asia-south1.run.app/amm/create-amm
+Body - 
+{
+  "cricketerContractAddress": "0x9F4DfDb029350C77da2cB024c68b81bE80DAc0a7",
+  "adminWalletAddress": "0xb46be61fb0dd88fb5eb2f5ad7163454304314b82"
+}
+
+- Add Liquidity
+URL - https://cricket-manager-backend-982880605381.asia-south1.run.app/amm/manage-liquidity
+Body - 
+{
+  "contractAddress": "0x83f0D1051BD5fCc090B7e300464d1f8457a69493",
+  "adminWalletAddress": "0xb46be61fb0dd88fb5eb2f5ad7163454304314b82",
+  "receiverWalletAddress": "0xb46be61fb0dd88fb5eb2f5ad7163454304314b82",
+  "action": "Add",
+  "bucSupply": 100,
+  "cricketerUnitSupply": 100
+}
+
+- Remove Liquidity
+URL - https://cricket-manager-backend-982880605381.asia-south1.run.app/amm/manage-liquidity
+Body - 
+{
+  "contractAddress": "0x83f0D1051BD5fCc090B7e300464d1f8457a69493",
+  "adminWalletAddress": "0xb46be61fb0dd88fb5eb2f5ad7163454304314b82",
+  "receiverWalletAddress": "0xb46be61fb0dd88fb5eb2f5ad7163454304314b82",
+  "action": "Remove",
+  "bucSupply": 100,
+  "cricketerUnitSupply": 100
+}
+
+- Set Fees
+URL - https://cricket-manager-backend-982880605381.asia-south1.run.app/amm/set-fees
+Body - 
+{
+  "adminWalletAddress": "0xb46be61fb0dd88fb5eb2f5ad7163454304314b82",
+  "feeBps": 100
+}
+
+- Set AntiDumpTeirs
+URL - https://cricket-manager-backend-982880605381.asia-south1.run.app/amm/set-anti-dump-tiers
+Body - 
+{
+  "adminWalletAddress": "0xb46be61fb0dd88fb5eb2f5ad7163454304314b82",
+  "tiers": [
+    {
+      "impactBps": 500,
+      "penaltyBps": 200
+    },
+    {
+      "impactBps": 1000,
+      "penaltyBps": 500
+    }
+  ]
+}
+
+- Set Slippage
+URL - https://cricket-manager-backend-982880605381.asia-south1.run.app/amm/set-slippage
+Body - 
+{
+  "adminWalletAddress": "0xb46be61fb0dd88fb5eb2f5ad7163454304314b82",
+  "slippageBps": 100
+}
+
+
+- Handle Swap
+URL - https://cricket-manager-backend-982880605381.asia-south1.run.app/amm/swap
+Body - 
+{
+  "contractAddress": "0x83f0D1051BD5fCc090B7e300464d1f8457a69493",
+  "userAddress": "0xb46be61fb0dd88fb5eb2f5ad7163454304314b82",
+  "amountIn": 100,
+  "minAmountOut": 1,
+  "isBuy": true,
+  "slippageBps": 1000
+}
+
+- Mint BUC
+URL - https://cricket-manager-backend-982880605381.asia-south1.run.app/wallet/manage-buc
+Body - 
+{
+  "adminWalletAddress": "0xb46be61fb0dd88fb5eb2f5ad7163454304314b82",
+  "quantity": 100,
+  "action": "Mint"
+}
+
+- Burn BUC
+URL - https://cricket-manager-backend-982880605381.asia-south1.run.app/wallet/manage-buc
+Body - 
+{
+  "adminWalletAddress": "0xb46be61fb0dd88fb5eb2f5ad7163454304314b82",
+  "quantity": 100,
+  "action": "Burn"
+}
+
+- Transfer BUC
+URL - https://cricket-manager-backend-982880605381.asia-south1.run.app/wallet/transfer-buc
+Body -
+{
+  "fromWalletAddress": "0xb46be61fb0dd88fb5eb2f5ad7163454304314b82",
+  "toWalletAddress": "0x75933a1aaa8576585cf9608d242c25e1f497904f",
+  "quantity": 100
+}
+
+- Submit Transaction
+URL - https://cricket-manager-backend-982880605381.asia-south1.run.app/jobs/submit-transaction
+Body -
+{
+  "jobId": "bf4d435e-5110-4826-91d7-59e153b4f9b4",
+  "apiName": "CreateCricketerToken",
+  "signedTransactionPayload": {
+	"to": "0xFC84203dc5c0A2062E7A65334507623f2B2d1635",
+	"value": "0",
+	"data": "0xdf905caf00000000000000000000000000000000000000000000000000000000000000200000000000000000000000009ec142dd41c0554929cb01a9a11a7b14141f729a000000000000000000000000476ca99d3b4eaf2eaa3707d317c811eae0b0080f000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000f424000000000000000000000000000000000000000000000000000000000691dc75c00000000000000000000000000000000000000000000000000000000000000e00000000000000000000000000000000000000000000000000000000000000160000000000000000000000000000000000000000000000000000000000000004440c10f190000000000000000000000009ec142dd41c0554929cb01a9a11a7b14141f729a0000000000000000000000000000000000000000000000000de0b6b3a764000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004162b5d64fbc8189c4351cb3999660f74d1a8e3c1de7fe839f02c89efc090925f0113515760e3fdde64ccf3059fcb07c07c25284785d3d8fd1f2cff8ba7692d5a81b00000000000000000000000000000000000000000000000000000000000000",
+	"gasLimit": "200000",
+	"speed": "average"
+  }
+}
+
+- Get Transaction Status (Get Method)
+URL - https://cricket-manager-backend-982880605381.asia-south1.run.app/jobs/status?jobId=bf4d435e-5110-4826-91d7-59e153b4f9b4
+
+- Acknowledge Transaction
+URL - https://cricket-manager-backend-982880605381.asia-south1.run.app/jobs/acknowledgement
+Body -
+{
+  "jobId": "a1b2c3d4-e5f6-7890-1234-567890abcdef"
+}
+
+- Get Price
+URL - https://cricket-manager-backend-982880605381.asia-south1.run.app/get-info/get-price
+Body -
+{
+  "contractAddresses": ["0x9F4DfDb029350C77da2cB024c68b81bE80DAc0a7"]
+}
+
+- Get Amm Pool
+URL - https://cricket-manager-backend-982880605381.asia-south1.run.app/get-info/get-amm-pool
+Body -
+{
+  "cricketerContractAddresses": [
+    "0x9F4DfDb029350C77da2cB024c68b81bE80DAc0a7"
+  ]
+}
+
+- Get Pool Liquidity
+URL - https://cricket-manager-backend-982880605381.asia-south1.run.app/get-info/get-pool-liquidity
+Body -
+{
+  "ammPoolContractAddresses": [
+    "0x83f0D1051BD5fCc090B7e300464d1f8457a69493"
+  ]
+}
+
+- Get IsContract Paused
+URL - https://cricket-manager-backend-982880605381.asia-south1.run.app/get-info/get-isContract-paused
+Body -
+{
+  "contractAddresses": [
+    "0xAbE8C14C6501db6892B07B918E7F06F276D2976c"
+  ]
+}
+
+- Get Cricketer Contract
+URL - https://cricket-manager-backend-982880605381.asia-south1.run.app/get-info/get-cricketer-contract
+Body -
+{
+    "cricketerNames": [
+        "MS Dhoni"
+    ]
+}
+
+- Get Slippage (Get Method)
+URL - https://cricket-manager-backend-982880605381.asia-south1.run.app/get-info/get-slippage
+
+- Get AntiDumpTeirs (Get Method)
+URL - https://cricket-manager-backend-982880605381.asia-south1.run.app/get-info/get-anti-dump-tiers
+
+- Get Treasury Wallet (Get Method)
+URL - https://cricket-manager-backend-982880605381.asia-south1.run.app/get-info/get-treasury

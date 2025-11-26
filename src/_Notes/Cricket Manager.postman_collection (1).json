@@ -1,0 +1,732 @@
+{
+	"info": {
+		"_postman_id": "5d508806-03ea-4661-a7c3-e59713bfa6cf",
+		"name": "Cricket Manager",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "43720420"
+	},
+	"item": [
+		{
+			"name": "Pause Contract",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Public-Key",
+						"value": "aaaaa",
+						"type": "text"
+					},
+					{
+						"key": "X-Signature",
+						"value": "{}",
+						"type": "text"
+					},
+					{
+						"key": "X-Timestamp",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"contractAddress\": \"0xAbE8C14C6501db6892B07B918E7F06F276D2976c\",\r\n  \"adminWalletAddress\": \"0xb46be61fb0dd88fb5eb2f5ad7163454304314b82\",\r\n  \"action\": \"Pause\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/contract/setContract"
+			},
+			"response": []
+		},
+		{
+			"name": "Unpause Contract",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Public-Key",
+						"value": "aaaaa",
+						"type": "text"
+					},
+					{
+						"key": "X-Signature",
+						"value": "{}",
+						"type": "text"
+					},
+					{
+						"key": "X-Timestamp",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"contractAddress\": \"0xAbE8C14C6501db6892B07B918E7F06F276D2976c\",\r\n  \"adminWalletAddress\": \"0xb46be61fb0dd88fb5eb2f5ad7163454304314b82\",\r\n  \"action\": \"Unpause\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/contract/setContract"
+			},
+			"response": []
+		},
+		{
+			"name": "Add Admin",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Public-Key",
+						"value": "aaaaa",
+						"type": "text"
+					},
+					{
+						"key": "X-Signature",
+						"value": "{}",
+						"type": "text"
+					},
+					{
+						"key": "X-Timestamp",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"contractAddress\": \"0xAbE8C14C6501db6892B07B918E7F06F276D2976c\",\r\n  \"adminWalletAddress\": \"0xb46be61fb0dd88fb5eb2f5ad7163454304314b82\",\r\n  \"modifiedWalletAddress\":\"0x75933a1aaa8576585cf9608d242c25e1f497904f\",\r\n  \"action\": \"Add\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/contract/setAdmin"
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Admin",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Public-Key",
+						"value": "aaaaa",
+						"type": "text"
+					},
+					{
+						"key": "X-Signature",
+						"value": "{}",
+						"type": "text"
+					},
+					{
+						"key": "X-Timestamp",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"contractAddress\": \"0xAbE8C14C6501db6892B07B918E7F06F276D2976c\",\r\n  \"adminWalletAddress\": \"0xb46be61fb0dd88fb5eb2f5ad7163454304314b82\",\r\n  \"modifiedWalletAddress\":\"0x75933a1aaa8576585cf9608d242c25e1f497904f\",\r\n  \"action\": \"Remove\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/contract/setAdmin"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Cricketer Token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Public-Key",
+						"value": "aaaaa",
+						"type": "text"
+					},
+					{
+						"key": "X-Signature",
+						"value": "{}",
+						"type": "text"
+					},
+					{
+						"key": "X-Timestamp",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Virat Kohli Token\",\r\n  \"deployerAdminAddress\": \"0xb46be61fb0dd88fb5eb2f5ad7163454304314b82\",\r\n  \"symbol\": \"VKC\",\r\n  \"initialSupply\": 1000000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/cricketer/create-token"
+			},
+			"response": []
+		},
+		{
+			"name": "Add Cricketer Supply",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Public-Key",
+						"value": "aaaaa",
+						"type": "text"
+					},
+					{
+						"key": "X-Signature",
+						"value": "{}",
+						"type": "text"
+					},
+					{
+						"key": "X-Timestamp",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"contractAddress\": \"0x9F4DfDb029350C77da2cB024c68b81bE80DAc0a7\",\r\n  \"adminWalletAddress\": \"0xb46be61fb0dd88fb5eb2f5ad7163454304314b82\",\r\n  \"additionalSupply\": 100\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/cricketer/add-supply"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Amm",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Public-Key",
+						"value": "aaaaa",
+						"type": "text"
+					},
+					{
+						"key": "X-Signature",
+						"value": "{}",
+						"type": "text"
+					},
+					{
+						"key": "X-Timestamp",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cricketerContractAddress\": \"0x9F4DfDb029350C77da2cB024c68b81bE80DAc0a7\",\r\n  \"adminWalletAddress\": \"0xAbc123def456...\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/amm/create-amm"
+			},
+			"response": []
+		},
+		{
+			"name": "Add Liquidity",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Public-Key",
+						"value": "aaaaa",
+						"type": "text"
+					},
+					{
+						"key": "X-Signature",
+						"value": "{}",
+						"type": "text"
+					},
+					{
+						"key": "X-Timestamp",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"contractAddress\": \"0x83f0D1051BD5fCc090B7e300464d1f8457a69493\",\r\n  \"adminWalletAddress\": \"0xb46be61fb0dd88fb5eb2f5ad7163454304314b82\",\r\n  \"receiverWalletAddress\": \"0xb46be61fb0dd88fb5eb2f5ad7163454304314b82\",\r\n  \"action\": \"Add\",\r\n  \"bucSupply\": 100,\r\n  \"cricketerUnitSupply\": 100\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/cricketer/manage-liquidity"
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Liquidity",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Public-Key",
+						"value": "aaaaa",
+						"type": "text"
+					},
+					{
+						"key": "X-Signature",
+						"value": "{}",
+						"type": "text"
+					},
+					{
+						"key": "X-Timestamp",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"contractAddress\": \"0x83f0D1051BD5fCc090B7e300464d1f8457a69493\",\r\n  \"adminWalletAddress\": \"0xb46be61fb0dd88fb5eb2f5ad7163454304314b82\",\r\n  \"receiverWalletAddress\": \"0xb46be61fb0dd88fb5eb2f5ad7163454304314b82\",\r\n  \"action\": \"Remove\",\r\n  \"bucSupply\": 100,\r\n  \"cricketerUnitSupply\": 100\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/cricketer/manage-liquidity"
+			},
+			"response": []
+		},
+		{
+			"name": "Set Fees",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Public-Key",
+						"value": "aaaaa",
+						"type": "text"
+					},
+					{
+						"key": "X-Signature",
+						"value": "{}",
+						"type": "text"
+					},
+					{
+						"key": "X-Timestamp",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"adminWalletAddress\": \"0xb46be61fb0dd88fb5eb2f5ad7163454304314b82\",\r\n  \"feeBps\": 100\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/amm/set-fees"
+			},
+			"response": []
+		},
+		{
+			"name": "Set Anti Dump Tiers",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Public-Key",
+						"value": "aaaaa",
+						"type": "text"
+					},
+					{
+						"key": "X-Signature",
+						"value": "{}",
+						"type": "text"
+					},
+					{
+						"key": "X-Timestamp",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"adminWalletAddress\": \"0xb46be61fb0dd88fb5eb2f5ad7163454304314b82\",\r\n  \"tiers\": [\r\n    {\r\n      \"impactBps\": 500,\r\n      \"penaltyBps\": 200\r\n    },\r\n    {\r\n      \"impactBps\": 1000,\r\n      \"penaltyBps\": 500\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/amm/set-anti-dump-tiers"
+			},
+			"response": []
+		},
+		{
+			"name": "Set Slippage",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Public-Key",
+						"value": "aaaaa",
+						"type": "text"
+					},
+					{
+						"key": "X-Signature",
+						"value": "{}",
+						"type": "text"
+					},
+					{
+						"key": "X-Timestamp",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"adminWalletAddress\": \"0xb46be61fb0dd88fb5eb2f5ad7163454304314b82\",\r\n  \"slippageBps\": 100\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/amm/set-slippage"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Contract Price",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Public-Key",
+						"value": "aaaaa",
+						"type": "text"
+					},
+					{
+						"key": "X-Signature",
+						"value": "{}",
+						"type": "text"
+					},
+					{
+						"key": "X-Timestamp",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\"0x83f0D1051BD5fCc090B7e300464d1f8457a69493\"]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/amm/price"
+			},
+			"response": []
+		},
+		{
+			"name": "Handle Swap",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Public-Key",
+						"value": "aaaaa",
+						"type": "text"
+					},
+					{
+						"key": "X-Signature",
+						"value": "{}",
+						"type": "text"
+					},
+					{
+						"key": "X-Timestamp",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"contractAddress\": \"0x83f0D1051BD5fCc090B7e300464d1f8457a69493\",\r\n  \"userAddress\": \"0x75933a1aaa8576585cf9608d242c25e1f497904f\",\r\n  \"fromTokenAddress\": \"0xAbE8C14C6501db6892B07B918E7F06F276D2976c\",\r\n  \"toTokenAddress\": \"0x9F4DfDb029350C77da2cB024c68b81bE80DAc0a7\",\r\n  \"fromTokenAmount\": 100,\r\n  \"slippageBps\": 1000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/amm/swap"
+			},
+			"response": []
+		},
+		{
+			"name": "Mint BUC",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Public-Key",
+						"value": "aaaaa",
+						"type": "text"
+					},
+					{
+						"key": "X-Signature",
+						"value": "{}",
+						"type": "text"
+					},
+					{
+						"key": "X-Timestamp",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"walletAddress\": \"0xb46be61fb0dd88fb5eb2f5ad7163454304314b82\",\r\n  \"quantity\": 100,\r\n  \"action\": \"Mint\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/wallet/manage-buc"
+			},
+			"response": []
+		},
+		{
+			"name": "Burn BUC",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Public-Key",
+						"value": "aaaaa",
+						"type": "text"
+					},
+					{
+						"key": "X-Signature",
+						"value": "{}",
+						"type": "text"
+					},
+					{
+						"key": "X-Timestamp",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"walletAddress\": \"0xb46be61fb0dd88fb5eb2f5ad7163454304314b82\",\r\n  \"quantity\": 100,\r\n  \"action\": \"Burn\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/wallet/manage-buc"
+			},
+			"response": []
+		},
+		{
+			"name": "Transfer BUC",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Public-Key",
+						"value": "aaaaa",
+						"type": "text"
+					},
+					{
+						"key": "X-Signature",
+						"value": "{}",
+						"type": "text"
+					},
+					{
+						"key": "X-Timestamp",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"fromWalletAddress\": \"0xb46be61fb0dd88fb5eb2f5ad7163454304314b82\",\r\n  \"toWalletAddress\": \"0x75933a1aaa8576585cf9608d242c25e1f497904f\",\r\n  \"quantity\": 100\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/wallet/transfer-buc"
+			},
+			"response": []
+		},
+		{
+			"name": "Submit Transaction",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Public-Key",
+						"value": "aaaaa",
+						"type": "text"
+					},
+					{
+						"key": "X-Signature",
+						"value": "{}",
+						"type": "text"
+					},
+					{
+						"key": "X-Timestamp",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"jobId\": \"bf4d435e-5110-4826-91d7-59e153b4f9b4\",\r\n  \"apiName\": \"CreateCricketerToken\",\r\n  \"signedTransactionPayload\": {\r\n\t\"to\": \"0xFC84203dc5c0A2062E7A65334507623f2B2d1635\",\r\n\t\"value\": \"0\",\r\n\t\"data\": \"0xdf905caf00000000000000000000000000000000000000000000000000000000000000200000000000000000000000009ec142dd41c0554929cb01a9a11a7b14141f729a000000000000000000000000476ca99d3b4eaf2eaa3707d317c811eae0b0080f000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000f424000000000000000000000000000000000000000000000000000000000691dc75c00000000000000000000000000000000000000000000000000000000000000e00000000000000000000000000000000000000000000000000000000000000160000000000000000000000000000000000000000000000000000000000000004440c10f190000000000000000000000009ec142dd41c0554929cb01a9a11a7b14141f729a0000000000000000000000000000000000000000000000000de0b6b3a764000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004162b5d64fbc8189c4351cb3999660f74d1a8e3c1de7fe839f02c89efc090925f0113515760e3fdde64ccf3059fcb07c07c25284785d3d8fd1f2cff8ba7692d5a81b00000000000000000000000000000000000000000000000000000000000000\",\r\n\t\"gasLimit\": \"200000\",\r\n\t\"speed\": \"average\"\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/jobs/submit-transaction"
+			},
+			"response": []
+		},
+		{
+			"name": "Transaction Status",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Public-Key",
+						"value": "aaaaa",
+						"type": "text"
+					},
+					{
+						"key": "X-Signature",
+						"value": "{}",
+						"type": "text"
+					},
+					{
+						"key": "X-Timestamp",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/jobs/status?jobId=bf4d435e-5110-4826-91d7-59e153b4f9b4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"jobs",
+						"status"
+					],
+					"query": [
+						{
+							"key": "jobId",
+							"value": "bf4d435e-5110-4826-91d7-59e153b4f9b4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Acknowledge Transaction",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Public-Key",
+						"value": "aaaaa",
+						"type": "text"
+					},
+					{
+						"key": "X-Signature",
+						"value": "{}",
+						"type": "text"
+					},
+					{
+						"key": "X-Timestamp",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"jobId\": \"a1b2c3d4-e5f6-7890-1234-567890abcdef\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/jobs/acknowledgement"
+			},
+			"response": []
+		},
+		{
+			"name": "Relayer Transaction",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Public-Key",
+						"value": "aaaaa",
+						"type": "text"
+					},
+					{
+						"key": "X-Signature",
+						"value": "{}",
+						"type": "text"
+					},
+					{
+						"key": "X-Timestamp",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"e7f0d522-59f0-4c20-8d2d-eebb8f4da5ad\",\r\n    \"hash\": \"0x64120f3ecbb1e2792a82bfe07f8501d011a96ff406760a5956ac91e12db4b0e9\",\r\n    \"status\": \"failed\",\r\n    \"status_reason\": \"Already Signed\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/jobs/relayerTransaction"
+			},
+			"response": []
+		}
+	]
+}

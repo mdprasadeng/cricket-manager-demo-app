@@ -12,7 +12,13 @@ function App() {
   const [submitResponse, setSubmitResponse] = useState("");
   const [privateKey, setPrivateKey] = useState("");
 
+  // NEW LOADING STATES
+  const [loadingApiCall, setLoadingApiCall] = useState(false);
+  const [loadingSign, setLoadingSign] = useState(false);
+  const [loadingSubmit, setLoadingSubmit] = useState(false);
+
   const handleApiCall = async () => {
+    setLoadingApiCall(true);
     try {
       const url = `${process.env.REACT_APP_API_URL}${apiUrl.startsWith("/") ? "" : "/"}${apiUrl}`;
       console.log(url);
@@ -41,9 +47,11 @@ function App() {
     } catch (error) {
       setResponse(error.message);
     }
+    setLoadingApiCall(false);
   };
 
   const handleSignPayload = async () => {
+    setLoadingSign(true);
     try {
       const payload = JSON.parse(transactionPayload);
       const { signature, txPayload } = await buildRelayerTransaction(
@@ -68,9 +76,11 @@ function App() {
     } catch (error) {
       setSignedPayload(error.message);
     }
+    setLoadingSign(false);
   };
 
   const handleSubmitTransaction = async () => {
+    setLoadingSubmit(true);
     try {
       const convertedObj = JSON.parse(signedPayload);
       const res = await fetch(
@@ -88,6 +98,7 @@ function App() {
     } catch (error) {
       setSubmitResponse(error.message);
     }
+    setLoadingSubmit(false);
   };
 
   return (
@@ -123,7 +134,10 @@ function App() {
         )}
 
         <br />
-        <button onClick={handleApiCall}>Send Request</button>
+        {/* DISABLED BUTTON */}
+        <button onClick={handleApiCall} disabled={loadingApiCall}>
+          {loadingApiCall ? "Sending..." : "Send Request"}
+        </button>
         <pre>{response}</pre>
       </div>
 
@@ -142,7 +156,10 @@ function App() {
           readOnly
         />
         <br />
-        <button onClick={handleSignPayload}>Sign Payload</button>
+        {/* DISABLED BUTTON */}
+        <button onClick={handleSignPayload} disabled={loadingSign}>
+          {loadingSign ? "Signing..." : "Sign Payload"}
+        </button>
         <pre>{signedPayload}</pre>
       </div>
 
@@ -150,7 +167,10 @@ function App() {
         <h2>3. Submit Transaction</h2>
         <textarea placeholder="Signed Payload" value={signedPayload} readOnly />
         <br />
-        <button onClick={handleSubmitTransaction}>Submit Transaction</button>
+        {/* DISABLED BUTTON */}
+        <button onClick={handleSubmitTransaction} disabled={loadingSubmit}>
+          {loadingSubmit ? "Submitting..." : "Submit Transaction"}
+        </button>
         <pre>{submitResponse}</pre>
       </div>
     </div>
