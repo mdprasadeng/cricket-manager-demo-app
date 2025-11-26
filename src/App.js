@@ -261,7 +261,7 @@ function App() {
       </div>
 
       <div>
-        {parsedTxnStatus?.data.hash && (
+        {parsedTxnStatus?.hash && (
           <>
             <h2>6. Verify on Chain</h2>
             <textarea
