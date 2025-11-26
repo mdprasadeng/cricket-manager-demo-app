@@ -20,7 +20,6 @@ function App() {
   const [loadingJobStatus, setLoadingJobStatus] = useState(false);
   const [loadingTxnStatus, setLoadingTxnStatus] = useState(false);
 
-  // Auto parsed versions for UI rendering
   const parsedSubmitResponse = submitResponse
     ? JSON.parse(submitResponse)
     : null;
@@ -69,8 +68,8 @@ function App() {
         payload.types,
         payload.forwardRequest
       );
-      const jobId = crypto.randomUUID();
 
+      const jobId = crypto.randomUUID();
       let apiName = "NA";
       try {
         apiName = JSON.parse(requestBody)?.apiName || "NA";
@@ -117,6 +116,7 @@ function App() {
         `${process.env.REACT_APP_API_URL}/jobs/status?jobId=${convertedObj.jobId}`,
         { method: "GET" }
       );
+
       const data = await res.json();
       setJobStatusResponse(JSON.stringify(data, null, 2));
     } catch (error) {
@@ -128,16 +128,17 @@ function App() {
   const handleGetTxnStatus = async () => {
     setLoadingTxnStatus(true);
     try {
-      const convertedObj = JSON.parse(signedPayload);
       const res = await fetch(
-        `${process.env.REACT_APP_RELAYER_API_URL}/api/v1/relayers/glhf-example/transactions/${convertedObj.jobId}`,
+        `/relayer/api/v1/relayers/glhf-example/transactions/${parsedJobStatus.transactionId}`,
         {
           method: "GET",
           headers: {
+            "Content-Type": "application/json",
             Authorization: `Bearer ${process.env.REACT_APP_RELAYER_BEARER}`,
           },
         }
       );
+
       const data = await res.json();
       setTxnStatusResponse(JSON.stringify(data, null, 2));
     } catch (error) {
@@ -182,6 +183,7 @@ function App() {
         <button onClick={handleApiCall} disabled={loadingApiCall}>
           {loadingApiCall ? "Sending..." : "Send Request"}
         </button>
+
         <pre>{response}</pre>
       </div>
 
@@ -189,6 +191,7 @@ function App() {
         {response && (
           <>
             <h2>2. Sign Transaction Payload</h2>
+
             <input
               type="text"
               placeholder="Private Key"
@@ -196,15 +199,18 @@ function App() {
               onChange={(e) => setPrivateKey(e.target.value)}
             />
             <br />
+
             <textarea
               placeholder="Transaction Payload"
               value={transactionPayload}
               readOnly
             />
             <br />
+
             <button onClick={handleSignPayload} disabled={loadingSign}>
               {loadingSign ? "Signing..." : "Sign Payload"}
             </button>
+
             <pre>{signedPayload}</pre>
           </>
         )}
@@ -216,9 +222,11 @@ function App() {
             <h2>3. Submit Transaction</h2>
             <textarea value={signedPayload} readOnly />
             <br />
+
             <button onClick={handleSubmitTransaction} disabled={loadingSubmit}>
               {loadingSubmit ? "Submitting..." : "Submit Transaction"}
             </button>
+
             <pre>{submitResponse}</pre>
           </>
         )}
@@ -230,9 +238,11 @@ function App() {
             <h2>4. Get Job Status</h2>
             <textarea value={parsedSubmitResponse.jobId} readOnly />
             <br />
+
             <button onClick={handleGetJobStatus} disabled={loadingJobStatus}>
               {loadingJobStatus ? "Fetching..." : "Get Job Status"}
             </button>
+
             <pre>{jobStatusResponse}</pre>
           </>
         )}
@@ -244,22 +254,25 @@ function App() {
             <h2>5. Get Transaction Status</h2>
             <textarea value={parsedJobStatus.transactionId} readOnly />
             <br />
+
             <button onClick={handleGetTxnStatus} disabled={loadingTxnStatus}>
               {loadingTxnStatus ? "Fetching..." : "Get Transaction Status"}
             </button>
+
             <pre>{txnStatusResponse}</pre>
           </>
         )}
       </div>
 
       <div>
-        {parsedTxnStatus?.transactionHash && (
+        {parsedTxnStatus?.data.hash && (
           <>
             <h2>6. Verify on Chain</h2>
+
             <button
               onClick={() =>
                 window.open(
-                  `https://glhf-testnet.explorer.caldera.xyz/tx/${parsedTxnStatus.transactionHash}`,
+                  `https://glhf-testnet.explorer.caldera.xyz/tx/${parsedTxnStatus?.data.hash}`,
                   "_blank"
                 )
               }
