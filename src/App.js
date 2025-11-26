@@ -265,13 +265,13 @@ function App() {
           <>
             <h2>6. Verify on Chain</h2>
             <textarea
-              value={`https://glhf-testnet.explorer.caldera.xyz/tx/${parsedTxnStatus?.data.hash}`}
+              value={`https://glhf-testnet.explorer.caldera.xyz/tx/${parsedTxnStatus?.hash}`}
               readOnly
             />
             <button
               onClick={() =>
                 window.open(
-                  `https://glhf-testnet.explorer.caldera.xyz/tx/${parsedTxnStatus?.data.hash}`,
+                  `https://glhf-testnet.explorer.caldera.xyz/tx/${parsedTxnStatus?.hash}`,
                   "_blank"
                 )
               }
