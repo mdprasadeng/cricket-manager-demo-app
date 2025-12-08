@@ -1,6 +1,40 @@
 import React, { useState } from "react";
 import "./App.css";
 import { buildRelayerTransaction } from "./signing";
+import { signRequest } from "./rsa-signing";
+
+const signedFetch = async (url, options = {}) => {
+  let bodyObj = null;
+  if (options.body) {
+    try {
+      // If body is string (JSON), parse it. If object, use as is.
+      bodyObj =
+        typeof options.body === "string"
+          ? JSON.parse(options.body)
+          : options.body;
+    } catch (e) {
+      console.warn("Could not parse body for signing", e);
+    }
+  }
+
+  // Extract path and query for signing (to match req.originalUrl on server)
+  const urlObj = new URL(url);
+  const pathForSigning = urlObj.pathname + urlObj.search;
+
+  const signatureHeaders = await signRequest({
+    method: options.method || "GET",
+    url: pathForSigning,
+    body: bodyObj,
+  });
+
+  return fetch(url, {
+    ...options,
+    headers: {
+      ...options.headers,
+      ...signatureHeaders,
+    },
+  });
+};
 
 function App() {
   const [apiUrl, setApiUrl] = useState("");
@@ -33,13 +67,15 @@ function App() {
   const handleApiCall = async () => {
     setLoadingApiCall(true);
     try {
-      const url = `${process.env.REACT_APP_API_URL}${apiUrl.startsWith("/") ? "" : "/"}${apiUrl}`;
+      const url = `${process.env.REACT_APP_API_URL}${
+        apiUrl.startsWith("/") ? "" : "/"
+      }${apiUrl}`;
       let res;
 
       if (apiMethod === "GET") {
-        res = await fetch(url, { method: "GET" });
+        res = await signedFetch(url, { method: "GET" });
       } else {
-        res = await fetch(url, {
+        res = await signedFetch(url, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: requestBody,
@@ -91,7 +127,7 @@ function App() {
     setLoadingSubmit(true);
     try {
       const convertedObj = JSON.parse(signedPayload);
-      const res = await fetch(
+      const res = await signedFetch(
         `${process.env.REACT_APP_API_URL}/jobs/submit-transaction`,
         {
           method: "POST",
@@ -112,7 +148,7 @@ function App() {
     setLoadingJobStatus(true);
     try {
       const convertedObj = JSON.parse(signedPayload);
-      const res = await fetch(
+      const res = await signedFetch(
         `${process.env.REACT_APP_API_URL}/jobs/status?jobId=${convertedObj.jobId}`,
         { method: "GET" }
       );
@@ -128,7 +164,7 @@ function App() {
   const handleGetTxnStatus = async () => {
     setLoadingTxnStatus(true);
     try {
-      const res = await fetch(
+      const res = await signedFetch(
         `${process.env.REACT_APP_API_URL}/get-info/get-relayer-transaction?transactionId=${parsedJobStatus.transactionId}`,
         {
           method: "GET",
