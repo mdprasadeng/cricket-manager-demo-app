@@ -35,6 +35,7 @@ module.exports = {
     },
     compress: true,
     port: 2020,
+    allowedHosts: "all",
   },
   resolve: {
     fallback: {
