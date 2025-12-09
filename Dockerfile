@@ -15,7 +15,7 @@ COPY . .
 
 # Set production env and expose default port (change if your app uses a different one)
 ENV NODE_ENV=production
-EXPOSE 3000
+EXPOSE 2020
 
 # Use the start script from package.json; change to ["node","server.js"] if needed
 CMD ["npm", "start"]
